@@ -67,57 +67,107 @@ public class interfaz_inicial extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         lista listagrande = new lista();
-        for (int i=0; i<Integer.parseInt(inputcantidad.getText())*Integer.parseInt(inputcantidad.getText());i++){
-        lista listaadyacencia = new lista();
-        vertice nuevo = new vertice(i, listaadyacencia);
-        listagrande.insertar(nuevo);
+        for (int i = 1; i <= Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText()); i++) {
+            lista listaadyacencia = new lista();
+            vertice nuevo = new vertice(i, listaadyacencia);
+            listagrande.insertar(nuevo);
         }
-        for (int i=1; i<Integer.parseInt(inputcantidad.getText())*Integer.parseInt(inputcantidad.getText());i++){
-        if(i==1){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpNext());
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarAbajo(i,Integer.parseInt(inputcantidad.getText())));
-        listagrande.setpFirst(listagrande.buscar(i));
-        }
-        else if(i==Integer.parseInt(inputcantidad.getText())){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpPrev());
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarAbajo(i,Integer.parseInt(inputcantidad.getText())));    
-        }
-        else if(i==Integer.parseInt(inputcantidad.getText())*Integer.parseInt(inputcantidad.getText())+1-Integer.parseInt(inputcantidad.getText())){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpNext());
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarArriba(i,Integer.parseInt(inputcantidad.getText())));
-        }
-        else if(i==Integer.parseInt(inputcantidad.getText())*Integer.parseInt(inputcantidad.getText())){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpPrev());
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarArriba(i,Integer.parseInt(inputcantidad.getText())));
-        listagrande.setpLast(listagrande.buscar(i));
-        }
-        else if(i < Integer.parseInt(inputcantidad.getText()) && i > 1){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpNext());  
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpPrev()); 
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarAbajo(i,Integer.parseInt(inputcantidad.getText())));
-        }
-        else if(i>Integer.parseInt(inputcantidad.getText())*Integer.parseInt(inputcantidad.getText())+1-Integer.parseInt(inputcantidad.getText()) && i<Integer.parseInt(inputcantidad.getText())*Integer.parseInt(inputcantidad.getText())){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpNext());  
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpPrev()); 
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarArriba(i,Integer.parseInt(inputcantidad.getText())));      
-        }
-        else if(i%Integer.parseInt(inputcantidad.getText())==0){
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpPrev()); 
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarArriba(i,Integer.parseInt(inputcantidad.getText())));
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarAbajo(i,Integer.parseInt(inputcantidad.getText())));
-        listagrande.buscar(i+1).getListaadyacencia().insertar(listagrande.buscar(i+1).getpNext()); 
-        listagrande.buscar(i+1).getListaadyacencia().insertar(listagrande.buscarArriba(i+1,Integer.parseInt(inputcantidad.getText())));
-        listagrande.buscar(i+1).getListaadyacencia().insertar(listagrande.buscarAbajo(i+1,Integer.parseInt(inputcantidad.getText())));
-        }
-        else{
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpPrev()); 
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscar(i).getpNext());
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarArriba(i,Integer.parseInt(inputcantidad.getText())));
-        listagrande.buscar(i).getListaadyacencia().insertar(listagrande.buscarAbajo(i,Integer.parseInt(inputcantidad.getText())));
-        }
+        for (int i = 1; i <= Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText()); i++) {
+            
+            //CUANDO I SEA 1:
+            
+            if (i == 1) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpNext());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscarAbajo(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+            
+                // CUANDO I SEA ESQUINA ARRIBA DERECHA:
+            } else if (i == Integer.parseInt(inputcantidad.getText())) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpPrev());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscarAbajo(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                
+                // CUANDO I SEA ESQUINA ABAJO IZQUIERDA
+            } else if (i == Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText()) + 1 - Integer.parseInt(inputcantidad.getText())) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpNext());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscarArriba(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                
+                // CUANDO I SEA ESQUINA ABAJO DERECHA
+            } else if (i == Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText())) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpPrev());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscarArriba(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                
+                // CUANDO I SEA BORDE DE ARRIBA
+            } else if (i < Integer.parseInt(inputcantidad.getText()) && i > 1) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpNext());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscar(i).getpPrev());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                vertice nuevoadyacencia2 = listagrande.CopiarDato(listagrande.buscarAbajo(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia2);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                nuevoadyacencia1.setpNext(nuevoadyacencia2);
+                
+                // CUANDO I SEA BORDE DE ABAJO 
+            } else if (i > Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText()) + 1 - Integer.parseInt(inputcantidad.getText()) && i < Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText())) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpNext());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscar(i).getpPrev());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                vertice nuevoadyacencia2 = listagrande.CopiarDato(listagrande.buscarArriba(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia2);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                nuevoadyacencia1.setpNext(nuevoadyacencia2);
+                
+                // CUANDO I SEA BORDE DERECHA
+            } else if (i % Integer.parseInt(inputcantidad.getText()) == 0) {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpPrev());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscarArriba(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                vertice nuevoadyacencia2 = listagrande.CopiarDato(listagrande.buscarAbajo(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia2);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                nuevoadyacencia1.setpNext(nuevoadyacencia2);
+                
+                // CUANDO I SEA BORDE IZQUIERDO
+            }else if (i % Integer.parseInt(inputcantidad.getText()) == 1){
+                vertice nuevoadyacencia3 = listagrande.CopiarDato(listagrande.buscar(i).getpNext());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia3);
+                vertice nuevoadyacencia4 = listagrande.CopiarDato(listagrande.buscarArriba(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia4);
+                vertice nuevoadyacencia5 = listagrande.CopiarDato(listagrande.buscarAbajo(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia5);
+                nuevoadyacencia3.setpNext(nuevoadyacencia4);
+                nuevoadyacencia4.setpNext(nuevoadyacencia5);
+                
+                // CUANDO SEA EL RESTO (DEBERIAN SER LOS QUE TENGAN 4 ADYACENTES)
+            }else {
+                vertice nuevoadyacencia = listagrande.CopiarDato(listagrande.buscar(i).getpPrev());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia);
+                vertice nuevoadyacencia1 = listagrande.CopiarDato(listagrande.buscarAbajo(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia1);
+                vertice nuevoadyacencia2 = listagrande.CopiarDato(listagrande.buscarArriba(i, Integer.parseInt(inputcantidad.getText())));
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia2);
+                vertice nuevoadyacencia3 = listagrande.CopiarDato(listagrande.buscar(i).getpNext());
+                listagrande.buscar(i).getListaadyacencia().insertar(nuevoadyacencia3);
+                nuevoadyacencia.setpNext(nuevoadyacencia1);
+                nuevoadyacencia1.setpNext(nuevoadyacencia2);
+                nuevoadyacencia2.setpNext(nuevoadyacencia3);
+            }
         }
         lista listafinal = new lista();
-        listafinal = listagrande.arbolExpMinPrim(listagrande);
+        listafinal = listagrande.arbolExpMinPrim(Integer.parseInt(inputcantidad.getText()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

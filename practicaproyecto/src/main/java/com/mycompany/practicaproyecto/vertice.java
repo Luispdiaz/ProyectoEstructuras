@@ -13,7 +13,6 @@ public class vertice {
     private vertice pNext;
     private vertice pPrev;
     private lista listaadyacencia;
-    private boolean vistado;
     private int estado;
 
     public vertice(int numVertice, lista listaadyacencia) {
@@ -21,7 +20,6 @@ public class vertice {
         this.listaadyacencia = listaadyacencia;
         this.pNext = null;
         this.pPrev = null;
-        this.vistado = false;
         this.estado = 0;
     }
 
@@ -31,14 +29,6 @@ public class vertice {
 
     public void setEstado(int estado) {
         this.estado = estado;
-    }
-
-    public boolean isVistado() {
-        return vistado;
-    }
-
-    public void setVistado(boolean vistado) {
-        this.vistado = vistado;
     }
 
     public vertice getpPrev() {
