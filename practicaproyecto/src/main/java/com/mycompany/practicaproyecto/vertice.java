@@ -8,6 +8,7 @@ package com.mycompany.practicaproyecto;
  *
  * @author Luisp
  */
+// Creamos la clase vertice con sus constructores.
 public class vertice {
     private int numVertice;
     private vertice pNext;

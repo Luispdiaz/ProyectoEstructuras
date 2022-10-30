@@ -14,5 +14,6 @@ public class Practicaproyecto {
     public static void main(String[] args) {
         interfaz_inicial prueba = new interfaz_inicial();
         prueba.setVisible(true);
+        prueba.setLocationRelativeTo(null);
     }
 }

@@ -10,11 +10,15 @@ import java.util.Random;
  *
  * @author Luisp
  */
+
+// Se contruye la clase Lista con sus constructores
 public class lista {
 
     private vertice pFirst;
     private vertice pLast;
     private int cantidad;
+    static vertice vOrigen;
+    static vertice vFinal;
 
     public lista() {
         this.pFirst = null;
@@ -45,11 +49,13 @@ public class lista {
     public void setpFirst(vertice pFirst) {
         this.pFirst = pFirst;
     }
-
+    
+    // Metodo para verificar si la lista esta vacia.
     public boolean vacio() {
         return this.getpFirst() == null;
     }
-
+    
+    // Metodo para insertar vertice.
     public void insertar(vertice nuevo) {
         if (!this.vacio()) {
             vertice aux = this.getpLast();
@@ -63,7 +69,8 @@ public class lista {
             this.setCantidad(1);
         }
     }
-
+    
+    // Metodo para buscar un vertice.
     public vertice buscar(int posicion) {
         vertice aux = this.getpFirst();
         for (int i = 1; i < posicion; i++) {
@@ -71,7 +78,8 @@ public class lista {
         }
         return aux;
     }
-
+    
+    // Metodo para buscar arriba.
     public vertice buscarArriba(int numVertice, int input) {
         vertice aux = this.getpFirst();
         while (aux != this.buscar(numVertice - input)) {
@@ -79,7 +87,8 @@ public class lista {
         }
         return aux;
     }
-
+    
+    // Metodo para buscar abajo.
     public vertice buscarAbajo(int numVertice, int input) {
         vertice aux = this.getpFirst();
         while (aux != this.buscar(input + numVertice)) {
@@ -87,7 +96,8 @@ public class lista {
         }
         return aux;
     }
-
+    
+    // Metodo random para obtener la esquina que sera el inicio del laberinto.
     public vertice getEsquina(int constante, int input) {
         Random rnd = new Random();
         while (true) {
@@ -104,7 +114,8 @@ public class lista {
         }
 
     }
-
+    
+    // Metodo para encontrar la esquina contraria que sera el final del laberinto.
     public vertice getEsquinacontraria(int constante, int input) {
         if (constante == 1) {
             return this.getpLast();
@@ -117,12 +128,17 @@ public class lista {
         }
         return null;
     }
-
+    
+    // Algoritmo de prim.
     public lista arbolExpMinPrim(int input) {
         int verticesTotales = this.getCantidad();
-        vertice vOrigen = this.getEsquina(verticesTotales, input);
-        vOrigen.setEstado(1);
-        this.getEsquinacontraria(vOrigen.getNumVertice(), input).setEstado(1);
+        lista listaadyacencia2 = new lista();
+        vOrigen = new vertice(0, listaadyacencia2);
+        vOrigen = this.getEsquina(verticesTotales, input);
+        vOrigen.setEstado(3);
+        vFinal = new vertice(0, listaadyacencia2);
+        vFinal = this.getEsquinacontraria(vOrigen.getNumVertice(), input);
+        vFinal.setEstado(4);
         lista gNuevo = new lista();
         for (vertice i = this.getpFirst(); i != null; i = i.getpNext()) {
             lista listaadyacencia = new lista();
@@ -169,7 +185,8 @@ public class lista {
         }
         return gNuevo;
     }
-
+    
+    // Metodo para copiar los valores de un vertice. 
     public vertice CopiarDato(vertice nodo) {
         lista listaadyacencia = new lista();
         vertice nuevo = new vertice(nodo.getNumVertice(), listaadyacencia);

@@ -4,6 +4,8 @@
  */
 package com.mycompany.practicaproyecto;
 
+import java.awt.Graphics;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,12 +13,17 @@ import javax.swing.JOptionPane;
  * @author Luisp
  */
 public class interfaz_inicial extends javax.swing.JFrame {
-
+    
+    // Variables globales:
+    static int global;
+    static lista listagrande;
     /**
      * Creates new form interfaz_inicial
      */
     public interfaz_inicial() {
         initComponents();
+        listagrande = new lista();    
+        
     }
 
     /**
@@ -82,7 +89,6 @@ public class interfaz_inicial extends javax.swing.JFrame {
         if (Integer.parseInt(inputcantidad.getText()) < 5 || Integer.parseInt(inputcantidad.getText()) > 10) {
             JOptionPane.showMessageDialog(null, "No se permite un valor menor a 5 o mayor a 10");
         } else {
-            lista listagrande = new lista();
             for (int i = 1; i <= Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText()); i++) {
                 lista listaadyacencia = new lista();
                 vertice nuevo = new vertice(i, listaadyacencia);
@@ -183,11 +189,24 @@ public class interfaz_inicial extends javax.swing.JFrame {
             }
             lista listafinal = new lista();
             listafinal = listagrande.arbolExpMinPrim(Integer.parseInt(inputcantidad.getText()));
+            // LLAMAMOS AL COMO RESOLVER EL LABERINTO
+            int metodoSeleccionado = comboBox.getSelectedIndex();
+            // FALTA REALIZAR LOS METODOS DE RESOLUCION DEL LABERINTO.
+            this.setVisible(false);
+            interfaz_inicial.global = Integer.parseInt(inputcantidad.getText());
+            JFrame miventana = new JFrame("Laberinto");
+            Juego game = new Juego();
+            miventana.add(game);
+            miventana.setSize(interfaz_inicial.global * 40 + 18, interfaz_inicial.global * 40 + 41); //Tamanio de la ventana
+            miventana.setResizable(false);
+            miventana.setLocationRelativeTo(null);//Localizacion de la ventana
+            miventana.setVisible(true);
+            miventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+
         }
         
-        // LLAMAMOS AL COMO RESOLVER EL LABERINTO
-        int metodoSeleccionado = comboBox.getSelectedIndex();
-        // FALTA REALIZAR LOS METODOS DE RESOLUCION DEL LABERINTO.
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
@@ -195,6 +214,8 @@ public class interfaz_inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxActionPerformed
 
     private void inputcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputcantidadKeyTyped
+        // Con esto validamos que solo se puedan ingresar numeros 
+        // y que solo pueda ser entre 5 y 10. 
         int key = evt.getKeyChar();
 
         boolean numeros = key >= 48 && key <= 57;
