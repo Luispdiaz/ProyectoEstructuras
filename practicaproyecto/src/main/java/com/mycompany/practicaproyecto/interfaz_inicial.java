@@ -78,9 +78,9 @@ public class interfaz_inicial extends javax.swing.JFrame {
                 comboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        jPanel1.add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 418, 290));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -89,6 +89,8 @@ public class interfaz_inicial extends javax.swing.JFrame {
         if (Integer.parseInt(inputcantidad.getText()) < 5 || Integer.parseInt(inputcantidad.getText()) > 10) {
             JOptionPane.showMessageDialog(null, "No se permite un valor menor a 5 o mayor a 10");
         } else {
+            int metodo = comboBox.getSelectedIndex();
+            if (metodo != 0){ 
             for (int i = 1; i <= Integer.parseInt(inputcantidad.getText()) * Integer.parseInt(inputcantidad.getText()); i++) {
                 lista listaadyacencia = new lista();
                 vertice nuevo = new vertice(i, listaadyacencia);
@@ -202,8 +204,13 @@ public class interfaz_inicial extends javax.swing.JFrame {
             miventana.setLocationRelativeTo(null);//Localizacion de la ventana
             miventana.setVisible(true);
             miventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            
-
+//            if (metodo ==3){
+//            game.laberinto.DFS(game.getGraphics());
+//            }
+       }
+            else{
+            JOptionPane.showMessageDialog(null, "Selecciona un metodo de busqueda");
+            }
         }
         
        

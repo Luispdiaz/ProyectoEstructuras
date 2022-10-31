@@ -21,6 +21,9 @@ import java.awt.Graphics;
     private final int altoBloque = 40;
     private final int anchoBloque = 40;
     
+    
+
+     
     // Metodo para colorear los cuadros del laberinto 5x5
     public void paint5x5(Graphics grafico) {
         int[][] laberinto = obtieneLaberinto5x5();
@@ -191,7 +194,123 @@ import java.awt.Graphics;
             }
         }
     }
+       
+    public void DFS(Graphics grafico){
+        int entradafila = 0;
+        int entradacolumna = 0;
+        int[][] laberinto = obtieneLaberinto5x5();
+    for (fila = 0; fila < numeroFilas; fila++) {
+            for (columna = 0; columna < numeroColumnas; columna++) {
+                if(laberinto[fila][columna] == 3){
+                    entradafila = fila;
+                    entradacolumna = columna;
+                }}
+    }
+    if (entradafila == 0 && entradacolumna == 0){
+    while(true){
+    if(laberinto[entradafila][entradacolumna]==4){
+        break;
+    }
+    else if(entradafila+1==5){
+    entradafila = 4;
+    entradacolumna += 1;
+    grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+    } 
+    else if(entradacolumna+1==5){
+    entradacolumna = 4;
+    entradafila += 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+    }
+    else if(laberinto[entradafila+1][entradacolumna]==1){
+        entradafila += 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
         
+    }
+    else if (laberinto[entradafila+1][entradacolumna]==2){
+        entradacolumna += 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+            }
+    }
+    }
+    else if(entradafila == 0 && entradacolumna == 4){
+    while(true){
+    if(laberinto[entradafila][entradacolumna]==4){
+        break;
+    }
+    else if(laberinto[entradafila+1][entradacolumna]==1){
+        entradafila += 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+        
+    }
+    else if (laberinto[entradafila+1][entradacolumna]==2){
+        entradacolumna -= 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+        
+            }
+    }
+    }
+    else if(entradafila == 4 && entradacolumna == 0){
+    while(true){
+    if(laberinto[entradafila][entradacolumna]==4){
+        break;
+    }
+    else if(laberinto[entradafila+1][entradacolumna]==1){
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+        entradafila += 1;
+    }
+    else if (laberinto[entradafila+1][entradacolumna]==2){
+        entradacolumna += 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+            }
+    }   
+    
+    }
+    else if(entradafila == 4 & entradafila == 4){
+    while(true){
+    if(laberinto[entradafila][entradacolumna]==4){
+        break;
+    }
+    else if(laberinto[entradafila+1][entradacolumna]==1){
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+        entradafila += 1;
+    }
+    else if (laberinto[entradafila+1][entradacolumna]==2){
+        entradacolumna += 1;
+        grafico.setColor(Color.yellow);
+        grafico.fillRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque); //El 40 es para agrandar la forma
+        grafico.setColor(Color.black);
+        grafico.drawRect(entradacolumna*40, entradafila*40, anchoBloque, altoBloque);
+            }
+    } 
+    }
+    }   
 
     //Metodo para obtener el laberinto
     // Se toman los Estados de los vertices adyacentes para imprimirlos.
