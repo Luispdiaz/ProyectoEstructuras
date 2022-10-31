@@ -204,9 +204,9 @@ public class interfaz_inicial extends javax.swing.JFrame {
             miventana.setLocationRelativeTo(null);//Localizacion de la ventana
             miventana.setVisible(true);
             miventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            if (metodo ==3){
-//            game.laberinto.DFS(game.getGraphics());
-//            }
+            if (metodo ==2){
+            game.laberinto.DFS(game.getGraphics());
+            }
        }
             else{
             JOptionPane.showMessageDialog(null, "Selecciona un metodo de busqueda");
